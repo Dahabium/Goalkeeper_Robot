@@ -11,6 +11,7 @@ public class StartRobot {
         View view = new View();
         robotController controller = new robotController(view, model);
 
+        System.out.println();
     }
 
 }

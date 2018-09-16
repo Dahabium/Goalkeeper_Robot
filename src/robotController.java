@@ -1,3 +1,4 @@
+import java.awt.*;
 import java.awt.event.*;
 
 //user controls are in this class
@@ -14,7 +15,7 @@ public class robotController {
 
 
         keyControl buttonControl = new keyControl();
-        view.panel.addKeyListener(buttonControl);
+        view.topFrame.addKeyListener(buttonControl);
 
     }
 
@@ -31,9 +32,12 @@ public class robotController {
                 System.out.println("New X position " + robotModel.xPos);
 
                 robotModel.moveRight();
-
                 view.setSphereLoc(robotModel.xPos, robotModel.yPos);
+                //TODO changing robot position...
 
+//                view.robotGraphics.paintComponent();
+                view.robotGraphics.updateRectange(new Point(robotModel.xPos, robotModel.yPos));
+                view.robotGraphics.repaint();
             }
         }
 

@@ -1,7 +1,3 @@
-
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Circle;
-
 import javax.swing.*;
 import java.awt.*;
 
@@ -9,38 +5,37 @@ import java.awt.*;
 //No calculations are involved
 public class View  {
 
-
-    JPanel panel;
     Sphere sphere;
+    RobotGraphics robotGraphics;
+
+    JFrame topFrame, frontFrame;
 
     public View(){
 
-        JFrame frame = new JFrame();
+        topFrame = new JFrame();
+        frontFrame = new JFrame();
 
-        panel= new JPanel();
-
+        robotGraphics = new RobotGraphics();
         sphere = new Sphere();
 
-        frame.add(sphere);
+        topFrame.add(sphere);
+        frontFrame.add(robotGraphics);
 
+        topFrame.setSize(new Dimension(500, 500));
+        topFrame.setVisible(true);
 
+        frontFrame.setSize(new Dimension(500, 500));
+        frontFrame.setVisible(true);
 
-        panel.setSize(300, 300);
-        panel.setVisible(true);
-        panel.setFocusable(true);
-
-
-        frame.setSize(new Dimension(300, 300));
-        frame.setVisible(true);
-
-
-        frame.getContentPane().add(panel);
+        topFrame.setLocation(500,300);
+        frontFrame.setLocation(1000,300);
     }
 
     void setSphereLoc(int x, int y){
 
         System.out.println("setting new location");
         sphere.setLocation(x,y);
+
     }
 
 

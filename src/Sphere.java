@@ -5,8 +5,6 @@ import java.awt.*;
 public class Sphere extends JPanel {
 
 
-    public Sphere() {}
-
     @Override
     public void paintComponent(Graphics g){
 
