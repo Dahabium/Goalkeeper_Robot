@@ -11,6 +11,7 @@ public class robotBody {
 	}
 
 	public void createRobot(int nr_of_joints, int length_of_module, int with_of_module) {
+
 		for(int i = 0; i<nr_of_joints; i++){
 			robotModule temp = new robotModule();
 			modules.add(temp);
