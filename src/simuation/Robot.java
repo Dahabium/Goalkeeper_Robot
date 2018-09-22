@@ -78,19 +78,29 @@ public class Robot {
         }
         Rotate rotation = new Rotate(angle, xCircle, yCircle);
 
+//        Rotate rotation2 = new Rotate(angle, ((Circle) module2.getChildren().get(1)).getCenterX(), ((Circle) module2.getChildren().get(1)).getCenterY());
+
+//        module1.getTransforms().add(rotation)
         module1.getChildren().get(2).getTransforms().add(rotation);
 
         //TODO rotate other parts if we rotated the upper module...
+
         module2.getTransforms().add(rotation);
         module3.getTransforms().add(rotation);
+//        module3.getTransforms().set
 
 
-//        Timeline timeline = new Timeline(
-//                new KeyFrame(Duration.ZERO, new KeyValue(rotation.angleProperty(), 0)),
-//                new KeyFrame(Duration.seconds(1), new KeyValue(rotation.angleProperty(), 360)));
-//
-//
-//        timeline.play();
+        System.out.println("Pivot for joint 1  X:" + ((Circle) module1.getChildren().get(1)).getCenterX() +
+                "  Y:" + ((Circle) module1.getChildren().get(1)).getCenterY());
+        System.out.println("Pivot for joint 2  X:" + ((Circle) module2.getChildren().get(1)).getCenterX() +
+                "  Y:" + ((Circle) module2.getChildren().get(1)).getCenterY());
+        System.out.println("Pivot for joint 3  X:" + ((Circle) module3.getChildren().get(1)).getCenterX() +
+                "  Y:" + ((Circle) module3.getChildren().get(1)).getCenterY());
+
+        System.out.println("Rotation Method pivot   X:" + rotation.getPivotX() + "   Y:" + rotation.getPivotY());
+
+
+        doTranslate(rotation, angle);
 
     }
     public void rotateModule2(int angle){
@@ -108,9 +118,9 @@ public class Robot {
 
         module2.getChildren().get(2).getTransforms().add(rotation);
 
-        //TODO rotate other parts if we rotated the upper module...
-
         module3.getTransforms().add(rotation);
+
+        doTranslate(rotation, angle);
 
     }
     public void rotateModule3(int angle){
@@ -126,10 +136,22 @@ public class Robot {
         }
         Rotate rotation = new Rotate(angle, xCircle, yCircle);
 
+
         module3.getChildren().get(2).getTransforms().add(rotation);
+
+        doTranslate(rotation,angle);
 
     }
 
+    public void doTranslate(Rotate rotation, int angle){
+
+        Timeline timeline = new Timeline(
+                new KeyFrame(Duration.ZERO, new KeyValue(rotation.angleProperty(), 0)),
+                new KeyFrame(Duration.seconds(1), new KeyValue(rotation.angleProperty(), angle)));
+
+        timeline.play();
+
+    }
 
 
 }
