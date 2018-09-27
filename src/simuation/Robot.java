@@ -12,7 +12,12 @@ import javafx.util.Duration;
 
 public class Robot {
 
-    Group goal, module1, module2, module3;
+    //Holds graphics components that contain the goal
+    Group goal;
+    //each module contains graphical elements for each joint
+    Group module1, module2, module3;
+    //topgroup- contains all modules, middlegroup - contains last 2 modules....
+    Group topGroup,middleGroup, bottomGroup;
 
     public Robot(){
         goal = new Group();
@@ -27,35 +32,34 @@ public class Robot {
 
         //part 1
         module1 = new Group();
-        Rectangle block1 = new Rectangle(230,50,40,40);
-        Circle joint1 = new Circle(250,100,15);
-        Rectangle block1_end = new Rectangle(230,110,40,20);
+        Circle module1_joint = new Circle(250,65,15);
+        Rectangle module1_end = new Rectangle(230,80,40,50);
 
-        block1_end.setArcHeight(15);
-        block1_end.setArcWidth(15);
-        joint1.setFill(Color.BLUE);
-        block1_end.setFill(Color.GREEN);
+        module1_end.setArcHeight(15);
+        module1_end.setArcWidth(15);
+        module1_joint.setFill(Color.BLUE);
+        module1_end.setFill(Color.GREEN);
 
-        module1.getChildren().addAll(block1,joint1,block1_end);
+        module1.getChildren().addAll(module1_joint,module1_end);
 
         //part 2
         module2 = new Group();
-        Rectangle block2 = new Rectangle(230,130,40,40);
-        Circle joint2 = new Circle(250,180,15);
-        Rectangle block2_end = new Rectangle(230,190,40,20);
+        Rectangle module2_top = new Rectangle(230,130,40,40);
+        Circle module2_joint = new Circle(250,185,15);
+        Rectangle module2_end = new Rectangle(230,200,40,50);
 
-        block2_end.setArcHeight(15);
-        block2_end.setArcWidth(15);
-        joint2.setFill(Color.BLUE);
-        block2_end.setFill(Color.GREEN);
+        module2_end.setArcHeight(15);
+        module2_end.setArcWidth(15);
+        module2_joint.setFill(Color.BLUE);
+        module2_end.setFill(Color.GREEN);
 
-        module2.getChildren().addAll(block2,joint2,block2_end);
+        module2.getChildren().addAll(module2_top,module2_joint,module2_end);
 
         //part 3
         module3 = new Group();
-        Rectangle block3 = new Rectangle(230,210,40,40);
-        Circle joint3 = new Circle(250,260,15);
-        Rectangle block3_end = new Rectangle(230,270,40,20);
+        Rectangle block3 = new Rectangle(230,250,40,40);
+        Circle joint3 = new Circle(250,305,15);
+        Rectangle block3_end = new Rectangle(230,320,40,40);
 
         block3_end.setArcHeight(15);
         block3_end.setArcWidth(15);
@@ -63,66 +67,44 @@ public class Robot {
         block3_end.setFill(Color.GREEN);
 
         module3.getChildren().addAll(block3,joint3,block3_end);
+
+        //hierarchical structure
+        bottomGroup = new Group(module3);
+        middleGroup = new Group(module2,bottomGroup);
+        topGroup = new Group(module1,middleGroup);
+
     }
 
     public void rotateModule1(int angle){
 
-        double xCircle = 0;
-        double yCircle = 0;
+        double xCircle = getJoint(module1).getCenterX();
+        double yCircle = getJoint(module1).getCenterY();
 
-        for (int i = 0; i < 3; i++) {
-            if(module1.getChildren().get(i) instanceof Circle){
-                xCircle= ((Circle) module1.getChildren().get(i)).getCenterX();
-                yCircle= ((Circle) module1.getChildren().get(i)).getCenterY();
-            }
-        }
-        Rotate rotation = new Rotate(angle, xCircle, yCircle);
+        Rotate rotation = new Rotate(angle);
+        rotation.setPivotX(xCircle);
+        rotation.setPivotY(yCircle);
 
-//        Rotate rotation2 = new Rotate(angle, ((Circle) module2.getChildren().get(1)).getCenterX(), ((Circle) module2.getChildren().get(1)).getCenterY());
-
-//        module1.getTransforms().add(rotation)
-        module1.getChildren().get(2).getTransforms().add(rotation);
-
-        //TODO rotate other parts if we rotated the upper module...
-
-        module2.getTransforms().add(rotation);
-        module3.getTransforms().add(rotation);
-//        module3.getTransforms().set
-
-
-        System.out.println("Pivot for joint 1  X:" + ((Circle) module1.getChildren().get(1)).getCenterX() +
-                "  Y:" + ((Circle) module1.getChildren().get(1)).getCenterY());
-        System.out.println("Pivot for joint 2  X:" + ((Circle) module2.getChildren().get(1)).getCenterX() +
-                "  Y:" + ((Circle) module2.getChildren().get(1)).getCenterY());
-        System.out.println("Pivot for joint 3  X:" + ((Circle) module3.getChildren().get(1)).getCenterX() +
-                "  Y:" + ((Circle) module3.getChildren().get(1)).getCenterY());
-
-        System.out.println("Rotation Method pivot   X:" + rotation.getPivotX() + "   Y:" + rotation.getPivotY());
-
+        topGroup.getTransforms().add(rotation);
 
         doTranslate(rotation, angle);
 
     }
     public void rotateModule2(int angle){
 
-        double xCircle = 0;
-        double yCircle = 0;
+        double xCircle = getJoint(module2).getCenterX();
+        double yCircle = getJoint(module2).getCenterY();
 
-        for (int i = 0; i < 3; i++) {
-            if(module2.getChildren().get(i) instanceof Circle){
-                xCircle= ((Circle) module2.getChildren().get(i)).getCenterX();
-                yCircle= ((Circle) module2.getChildren().get(i)).getCenterY();
-            }
-        }
         Rotate rotation = new Rotate(angle, xCircle, yCircle);
 
+        //use only middlegroup
         module2.getChildren().get(2).getTransforms().add(rotation);
 
-        module3.getTransforms().add(rotation);
+        bottomGroup.getTransforms().add(rotation);
 
         doTranslate(rotation, angle);
 
     }
+
     public void rotateModule3(int angle){
 
         double xCircle = 0;
@@ -135,8 +117,7 @@ public class Robot {
             }
         }
         Rotate rotation = new Rotate(angle, xCircle, yCircle);
-
-
+        
         module3.getChildren().get(2).getTransforms().add(rotation);
 
         doTranslate(rotation,angle);
@@ -151,6 +132,15 @@ public class Robot {
 
         timeline.play();
 
+    }
+
+    public Circle getJoint(Group module){
+        for (int i = 0; i < 3; i++) {
+            if(module.getChildren().get(i) instanceof Circle){
+                return (Circle) module.getChildren().get(i);
+            }
+        }
+        return null;
     }
 
 

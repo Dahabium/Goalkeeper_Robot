@@ -28,7 +28,7 @@ public class RobotController {
     public void initialize() {
         robot = new Robot();
 
-        robotElements.getChildren().addAll(robot.goal, robot.module1, robot.module2, robot.module3);
+        robotElements.getChildren().addAll(robot.goal, robot.topGroup);
         control = new RobotAnimationControl();
     }
 
@@ -56,16 +56,6 @@ public class RobotController {
             else if(CurrentModuleRoatation == 3){
                 robot.rotateModule3(10);
             }
-
-//            System.out.println("Moving left");
-//            new AnimationTimer(){
-//
-//                @Override
-//                public void handle(long now) {
-//                    robot.module1.getChildren().get(2).setRotate(robot.module1.getChildren().get(2).getRotate() - 0.1);
-//                }
-//            }.start();
-
         }
 
         if(event.getCode() == KeyCode.RIGHT){
@@ -80,13 +70,6 @@ public class RobotController {
             else if(CurrentModuleRoatation == 3){
                 robot.rotateModule3(-10);
             }
-//            new AnimationTimer(){
-//
-//                @Override
-//                public void handle(long now) {
-//                    robot.module1.getChildren().get(2).setRotate(robot.module1.getChildren().get(2).getRotate() + 0.1);
-//                }
-//            }.start();
         }
     }
 

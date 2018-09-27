@@ -53,6 +53,7 @@ public class Main extends Application {
         //this is a javafx bug that is fixed with a walkaround... (otherwise i would call the method straigh
         //from the controller... without those lines to make it focused.
         RobotController controller = loader.<RobotController>getController();
+
         controller.focus();
 
 
