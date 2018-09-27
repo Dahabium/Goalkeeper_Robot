@@ -8,6 +8,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.transform.Rotate;
+import robotModules.moduleCreator;
 
 import java.io.IOException;
 
@@ -27,8 +28,12 @@ public class RobotController {
 
     public void initialize() {
         robot = new Robot();
-
-        robotElements.getChildren().addAll(robot.goal, robot.module1, robot.module2, robot.module3);
+        
+        for(Group g : moduleCreator.getModules()) {
+        	robotElements.getChildren().add(g);
+        }
+        
+        ///robotElements.getChildren().addAll(robot.goal, robot.module1, robot.module2, robot.module3);
         control = new RobotAnimationControl();
     }
 

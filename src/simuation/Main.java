@@ -8,6 +8,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.stage.Stage;
+import robotModules.robotBody;
 
 public class Main extends Application {
 
@@ -71,6 +72,7 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+        robotBody.test();
+    	launch(args);
     }
 }
