@@ -107,17 +107,10 @@ public class Robot {
 
     public void rotateModule3(int angle){
 
-        double xCircle = 0;
-        double yCircle = 0;
-
-        for (int i = 0; i < 3; i++) {
-            if(module3.getChildren().get(i) instanceof Circle){
-                xCircle= ((Circle) module3.getChildren().get(i)).getCenterX();
-                yCircle= ((Circle) module3.getChildren().get(i)).getCenterY();
-            }
-        }
+        double xCircle = getJoint(module3).getCenterX();
+        double yCircle = getJoint(module3).getCenterY();
         Rotate rotation = new Rotate(angle, xCircle, yCircle);
-        
+
         module3.getChildren().get(2).getTransforms().add(rotation);
 
         doTranslate(rotation,angle);
@@ -142,6 +135,5 @@ public class Robot {
         }
         return null;
     }
-
 
 }
