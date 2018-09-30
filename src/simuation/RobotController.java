@@ -1,35 +1,39 @@
 package simuation;
 
-import javafx.animation.AnimationTimer;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.transform.Rotate;
+import robotModules.Robot;
+
 
 import java.io.IOException;
 
 public class RobotController {
 
     @FXML
-    public Group robotElements;
+    public Group screenElements;
     @FXML
     public BorderPane RobotPane;
 
     Robot robot;
 
-    RobotAnimationControl control;
-
     int CurrentModuleRoatation = 0;
 
 
     public void initialize() {
+
+        //create robot backend, which also creates graphics
         robot = new Robot();
 
-        robotElements.getChildren().addAll(robot.goal, robot.topGroup);
-        control = new RobotAnimationControl();
+        //add the goal to the screen
+        screenElements.getChildren().add(robot.graphics.getGoal());
+
+        //add the robot to the screen
+        screenElements.getChildren().addAll(robot.graphics.getRobot());
+
+//        control = new RobotAnimationControl();
     }
 
     @FXML
@@ -47,6 +51,7 @@ public class RobotController {
 
         if (event.getCode() == KeyCode.LEFT) {
 
+            System.out.println("Moving left");
             if(CurrentModuleRoatation == 1){
                 robot.rotateModule1(10);
             }
@@ -59,7 +64,7 @@ public class RobotController {
         }
 
         if(event.getCode() == KeyCode.RIGHT){
-            System.out.println("Moving rght");
+            System.out.println("Moving right");
 
             if(CurrentModuleRoatation == 1){
                 robot.rotateModule1(-10);
@@ -73,37 +78,8 @@ public class RobotController {
         }
     }
 
-    public class RobotAnimationControl extends AnimationTimer {
-
-        @Override
-        public void handle(long now) {
-
-            if(robot.module1.getChildren().get(2) instanceof Rectangle){
-                robot.module1.getChildren().get(2).setRotate(robot.module1.getChildren().get(2).getRotate() + 2);
-            }
-
-        }
-    }
-
-
-
-//    private class KeyControl implements EventHandler<KeyEvent> {
-//
-//        @Override
-//        public void handle(KeyEvent event) {
-//
-//            if (event.getCode() == KeyCode.SPACE) {
-//                System.out.println("Controlling the robot");
-//
-//            }
-//        }
-//    }
-
-
     public void focus() {
-        robotElements.requestFocus();
+        screenElements.requestFocus();
     }
-
-
 
 }

@@ -10,7 +10,7 @@
     <center>
         <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
             <children>
-                <Group fx:id="robotElements"/>
+                <Group fx:id="screenElements"/>
             </children>
         </Pane>
     </center>

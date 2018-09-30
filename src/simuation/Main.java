@@ -39,7 +39,7 @@ public class Main extends Application {
         //create window for the robot, add robot parts through controller.
         Stage secondryStage = new Stage();
 
-        secondryStage.setTitle("Robot");
+        secondryStage.setTitle("robot");
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../userinterface/RobotView.fxml"));
@@ -72,6 +72,6 @@ public class Main extends Application {
 
 
     public static void main(String[] args) {
-        launch(args);
+    	launch(args);
     }
 }

@@ -2,37 +2,106 @@ package robotModules;
 
 public class robotJoint {
 	
-	private robotModule input;
-	private robotModule output;
-	private int rotationAngle;
 	
-	public robotJoint() {
-		
+	private int x;
+	private int y;
+	private int globalID;
+	private int currentBentDegree;
+	private int robotBentDegree;
+	private int calibraionValue;
+	private robotModule_top topModule;
+	private robotModule_bottom bottomModule;
+	
+	public robotJoint(int x, int y) {
+		this.x = x;
+		this.y = y;
+		this.globalID = x + y;
 	}
 	
-	public robotJoint(robotModule input, robotModule output, int rotationAngle) {
-		this.input = input;
-		this.output = output;
-		this.rotationAngle = rotationAngle;
+	public int getGlobalID() {
+		return this.globalID;
 	}
 	
-	public robotModule getInput() {
-		return input;
+	public robotModule_top getTopModule() {
+		return topModule;
 	}
-	public void setInput(robotModule input) {
-		this.input = input;
+
+
+	public void setTopModule(robotModule_top topModule) {
+		this.topModule = topModule;
 	}
-	public robotModule getOutput() {
-		return output;
+
+
+	public robotModule_bottom getBottomModule() {
+		return bottomModule;
 	}
-	public void setOutput(robotModule output) {
-		this.output = output;
+
+
+	public void setBottomModule(robotModule_bottom bottomModule) {
+		this.bottomModule = bottomModule;
 	}
-	public int getRotationAngle() {
-		return rotationAngle;
+
+
+	public robotJoint(int x, int y, int currentBentDegree) {
+		this.x = x;
+		this.y = y;
+		this.currentBentDegree = currentBentDegree;
 	}
-	public void setRotationAngle(int rotationAngle) {
-		this.rotationAngle = rotationAngle;
+
+
+	public int getX() {
+		return x;
 	}
+
+
+	public void setX(int x) {
+		this.x = x;
+	}
+
+
+	public int getY() {
+		return y;
+	}
+
+
+	public void setY(int y) {
+		this.y = y;
+	}
+
+
+	public int getCurrentBentDegree() {
+		return currentBentDegree;
+	}
+
+
+	public void setCurrentBentDegree(int currentBentDegree) {
+		this.currentBentDegree = currentBentDegree;
+	}
+
+
+	public int getRobotBentDegree() {
+		return robotBentDegree;
+	}
+
+
+	public void setRobotBentDegree(int robotBentDegree) {
+		this.robotBentDegree = robotBentDegree;
+	}
+
+
+	public int getCalibraionValue() {
+		return calibraionValue;
+	}
+
+
+	public void setCalibraionValue(int calibraionValue) {
+		this.calibraionValue = calibraionValue;
+	}
+	
+	
+	public String print() {
+		return "Joint " + this.globalID;
+	}
+	
 	
 }
