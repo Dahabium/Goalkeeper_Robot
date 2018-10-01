@@ -1,5 +1,6 @@
 package robotModules;
 
+import javafx.animation.AnimationTimer;
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -16,6 +17,7 @@ public class Robot {
 	robotModule_bottom bottom_1,bottom_2,bottom_3;
 
 	public robotGraphics graphics;
+	public RobotAnimationControl robotAnimation;
 
 	public Robot() {
 
@@ -63,8 +65,10 @@ public class Robot {
 
 		graphics.createTree();
 
-		System.out.println( joint_2.getX());
-		System.out.println( joint_2.getY());
+		robotAnimation = new RobotAnimationControl();
+
+		robotAnimation.start();
+
 	}
 
 	//TODO Move the animation to some other animation class? leaving it here for now.
@@ -74,15 +78,18 @@ public class Robot {
 		double yCircle = getJoint(graphics.modules.get(0)).getCenterY();
 
 		System.out.println("1 : " + xCircle + "   " + yCircle);
+
 		Rotate rotation = new Rotate(angle);
 		rotation.setPivotX(xCircle);
 		rotation.setPivotY(yCircle);
 
+
 		graphics.topGroup.getTransforms().add(rotation);
 		doTranslate(rotation, angle);
 
-
 	}
+
+
 	public void rotateModule2(int angle){
 
 		double xCircle = getJoint(graphics.modules.get(1)).getCenterX();
@@ -98,19 +105,15 @@ public class Robot {
 
 
 		doTranslate(rotation, angle);
-
-		//test - updating new info for backend
-//		System.out.println("Old backend coordinates X:" + joint_2.getX()+ "  Y:" + joint_2.getX() );
-//		joint_2.setX((int)getJoint(graphics.modules.get(1)).getCenterX());
-//		joint_2.setY((int)getJoint(graphics.modules.get(1)).getCenterY());
-//		System.out.println("New backend coordinates X:" + joint_2.getX()+ "  Y:" + joint_2.getX() );
-
+		
 	}
 
 	public void rotateModule3(int angle){
 
+
 		double xCircle = getJoint(graphics.modules.get(2)).getCenterX();
 		double yCircle = getJoint(graphics.modules.get(2)).getCenterY();
+
 		System.out.println("3 : " + xCircle + "   " + yCircle);
 		Rotate rotation = new Rotate(angle, xCircle, yCircle);
 
@@ -122,13 +125,14 @@ public class Robot {
 
 	public void doTranslate(Rotate rotation, int angle){
 
+
 		Timeline timeline = new Timeline(
 				new KeyFrame(Duration.ZERO, new KeyValue(rotation.angleProperty(), 0)),
 				new KeyFrame(Duration.seconds(1), new KeyValue(rotation.angleProperty(), angle)));
 
-		timeline.play();
+		System.out.println("PLAYING ANIMATION");
 
-		System.out.println("New backend coordinates X:" + joint_2.getX()+ "  Y:" + joint_2.getY() );
+		timeline.play();
 
 
 	}
@@ -143,9 +147,18 @@ public class Robot {
 		return null;
 	}
 
-	public void updateBackend(){
 
+
+	public class RobotAnimationControl extends AnimationTimer {
+
+		@Override
+		public void handle(long now) {
+
+			//runs 30 times a second
+
+		}
 	}
+
 
 
 

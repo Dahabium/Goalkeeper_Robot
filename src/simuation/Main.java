@@ -21,6 +21,8 @@ public class Main extends Application {
 
         Parent parent = FXMLLoader.load(getClass().getResource("../userinterface/mainView.fxml"));
 
+        FXMLLoader ballLoader = new FXMLLoader();
+        ballLoader.load(getClass().getResource("../userinterface/mainView.fxml"));
         primaryStage.setTitle("Ball");
 
         BallScene = new Scene(parent, 500, 500);
@@ -50,12 +52,16 @@ public class Main extends Application {
         secondryStage.setScene(RobotScene);
         secondryStage.show();
 
+        KeyControl control = new KeyControl();
+
         //this is a javafx bug that is fixed with a walkaround... (otherwise i would call the method straigh
         //from the controller... without those lines to make it focused.
         RobotController controller = loader.<RobotController>getController();
+        BallController controller1 = ballLoader.<BallController>getController();
+
 
         controller.focus();
-
+//        controller1.focus();
 
     }
 

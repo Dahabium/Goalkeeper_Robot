@@ -11,16 +11,21 @@ public class Ball {
     public Rectangle goal;
 
     double alphaInterpolant = 1;
+    public double xPos, yPos, zPos;
 
     public Ball(){
+        this.xPos = 230.0;
+        this.yPos = 400.0;
+
+
 
         goal = new Rectangle(40,20,420,30);
         //so the line of the goal is at y = 50...
 
         ball = new Circle();
         ball.setFill(Color.BLUE);
-        ball.setCenterX(230.0);
-        ball.setCenterY(400.0);
+        ball.setCenterX(yPos);
+        ball.setCenterY(xPos);
         ball.setRadius(30);
     }
 
@@ -36,12 +41,14 @@ public class Ball {
 //            ball.setCenterY(ball.getCenterY() -  10 * calculateInterpolation(400, ball.getCenterY(), 100));
 
             if(alphaInterpolant - 0.005 > 0 ){
+
                 alphaInterpolant = alphaInterpolant - 0.005;
 
                 System.out.println("Running! " + alphaInterpolant);
             }
 
-            if(ball.getCenterY() > 50){
+            //collision check for the ball with the goal
+            if(!ball.getBoundsInLocal().intersects(goal.getBoundsInLocal())){
 
                 ball.setCenterY(ball.getCenterY() -  5 * alphaInterpolant);
             }
@@ -58,6 +65,11 @@ public class Ball {
 
 
         return a;
+    }
+
+    private double getRadius(double hight){
+
+        return hight * 2;
     }
 
 
