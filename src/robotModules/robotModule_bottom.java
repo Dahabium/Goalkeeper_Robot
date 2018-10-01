@@ -1,10 +1,10 @@
 package robotModules;
 
-public class robotModule_bottom {
+public class robotModule_bottom implements Objects{
 
-	private int x;
-	private int y;
-	private int globalID;
+	private double x;
+	private double y;
+	private double globalID;
     private int length;
     private int width;
     private int weight;
@@ -12,7 +12,7 @@ public class robotModule_bottom {
     private robotModule_top bottom;
    
   
-    public robotModule_bottom(int x, int y, int length, int width, int weight) {
+    public robotModule_bottom(double x, double y, int length, int width, int weight) {
     	this.length = length;
     	this.width = width;
     	this.weight = weight;
@@ -22,26 +22,26 @@ public class robotModule_bottom {
     }
 
 
-    public int getGlobalID() {
+    public double getGlobalID() {
 		return this.globalID;
 	}
     
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 
 
-	public void setX(int x) {
+	public void setX(double x) {
 		this.x = x;
 	}
 
 
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 
 
-	public void setY(int y) {
+	public void setY(double y) {
 		this.y = y;
 	}
 

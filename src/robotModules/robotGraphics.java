@@ -33,7 +33,7 @@ public class robotGraphics {
 		Group cluster = new Group();
         
 		Rectangle block_top = new Rectangle(top.getX(),top.getY(),40,40);
-        Circle joint_middle = new Circle(joint.getX(),joint.getY(),15);
+        Circle joint_middle = new Circle(joint.getX(),joint.getY(),10);
         Rectangle block_end = new Rectangle(bottom.getX(),bottom.getY(),40,50);
 
         block_end.setArcHeight(15);
