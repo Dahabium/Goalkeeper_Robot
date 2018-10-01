@@ -10,6 +10,7 @@ import javafx.scene.Group;
 import javafx.scene.shape.Circle;
 import javafx.scene.transform.Rotate;
 import javafx.util.Duration;
+import simuation.RobotController;
 
 //creates and stores the backend objects of the robot
 public class Robot {
@@ -83,7 +84,7 @@ public class Robot {
 		graphics.createCluster(top_2, joint_2, bottom_2);
 		graphics.createCluster(top_3, joint_3, bottom_3);
 
-		graphics.createTree();
+//		graphics.createTree();
 
 		robotAnimation = new RobotAnimationControl();
 
@@ -104,7 +105,7 @@ public class Robot {
 		rotation.setPivotY(yCircle);
 
 
-		graphics.topGroup.getTransforms().add(rotation);
+//		graphics.topGroup.getTransforms().add(rotation);
 		doTranslate(rotation, angle);
 
 	}
@@ -121,7 +122,7 @@ public class Robot {
 		//use only middlegroup
 		graphics.modules.get(1).getChildren().get(2).getTransforms().add(rotation);
 
-		graphics.bottomGroup.getTransforms().add(rotation);
+//		graphics.bottomGroup.getTransforms().add(rotation);
 
 
 		doTranslate(rotation, angle);
@@ -176,65 +177,14 @@ public class Robot {
 
 			//runs 30 times a second
 
+//			RobotController.robot
+
+			graphics.modules.get(0).getChildren().get(2).setTranslateX(getObjects().get(2).getY());
+
+			System.out.println("Value : " + getObjects().get(2).getX() );
 		}
 	}
 
 
-
-
-	//OLD WAY OF CREATION
-
-	//        goal = new Group();
-//
-//        Rectangle leftColumn = new Rectangle(20,20,30,300);
-//        Rectangle rightColumn = new Rectangle(450,20,30,300);
-//        Rectangle topBar = new Rectangle(40,20,420,30);
-//
-//        goal.getChildren().addAll(leftColumn,rightColumn,topBar);
-//
-//        //modules... for each module, there will be a java group so we could maintain them individually...
-//
-//        //part 1
-//        module1 = new Group();
-//        Circle module1_joint = new Circle(250,65,15);
-//        Rectangle module1_end = new Rectangle(230,80,40,50);
-//
-//        module1_end.setArcHeight(15);
-//        module1_end.setArcWidth(15);
-//        module1_joint.setFill(Color.BLUE);
-//        module1_end.setFill(Color.GREEN);
-//
-//        module1.getChildren().addAll(module1_joint,module1_end);
-//
-//        //part 2
-//        module2 = new Group();
-//        Rectangle module2_top = new Rectangle(230,130,40,40);
-//        Circle module2_joint = new Circle(250,185,15);
-//        Rectangle module2_end = new Rectangle(230,200,40,50);
-//
-//        module2_end.setArcHeight(15);
-//        module2_end.setArcWidth(15);
-//        module2_joint.setFill(Color.BLUE);
-//        module2_end.setFill(Color.GREEN);
-//
-//        module2.getChildren().addAll(module2_top,module2_joint,module2_end);
-//
-//        //part 3
-//        module3 = new Group();
-//        Rectangle block3 = new Rectangle(230,250,40,40);
-//        Circle joint3 = new Circle(250,305,15);
-//        Rectangle block3_end = new Rectangle(230,320,40,40);
-//
-//        block3_end.setArcHeight(15);
-//        block3_end.setArcWidth(15);
-//        joint3.setFill(Color.BLUE);
-//        block3_end.setFill(Color.GREEN);
-//
-//        module3.getChildren().addAll(block3,joint3,block3_end);
-//
-//        //hierarchical structure
-//        bottomGroup = new Group(module3);
-//        middleGroup = new Group(module2,bottomGroup);
-//        topGroup = new Group(module1,middleGroup);
 
 }

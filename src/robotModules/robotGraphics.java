@@ -13,7 +13,8 @@ import javafx.util.Duration;
 
 public class robotGraphics {
 
-    Group topGroup,middleGroup, bottomGroup;
+//    Group topGroup,middleGroup, bottomGroup;
+
     Group goal;
 
     ArrayList<Group> modules = new ArrayList<>();
@@ -33,6 +34,8 @@ public class robotGraphics {
 		Group cluster = new Group();
         
 		Rectangle block_top = new Rectangle(top.getX(),top.getY(),40,40);
+//		block_top.setTranslateX(top.getX());
+//		block_top.setTranslateY(top.getY());
         Circle joint_middle = new Circle(joint.getX(),joint.getY(),10);
         Rectangle block_end = new Rectangle(bottom.getX(),bottom.getY(),40,50);
 
@@ -45,14 +48,13 @@ public class robotGraphics {
 		modules.add(cluster);
 	}
 
-	public void createTree(){
-
-        bottomGroup = new Group(modules.get(2));
-        middleGroup = new Group(modules.get(1),bottomGroup);
-        topGroup = new Group(modules.get(0),middleGroup);
-
-    }
-
+//	public void createTree(){
+//
+//        bottomGroup = new Group(modules.get(2));
+//        middleGroup = new Group(modules.get(1),bottomGroup);
+//        topGroup = new Group(modules.get(0),middleGroup);
+//
+//    }
 
 	public ArrayList<Group> getModules() {
 		return modules;
@@ -64,12 +66,8 @@ public class robotGraphics {
 
     //PS: The robot is a hierarchical structure, so Im adding the topmost
     //module, which contains everything below it.
-    public Group getRobot(){
-	    return topGroup;
-    }
-
-
-
-
+//    public Group getRobot(){
+//	    return topGroup;
+//    }
 
 }

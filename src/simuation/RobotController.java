@@ -10,6 +10,7 @@ import robotModules.Robot;
 
 import java.io.IOException;
 
+
 public class RobotController {
 
     @FXML
@@ -17,7 +18,9 @@ public class RobotController {
     @FXML
     public BorderPane RobotPane;
 
-    Robot robot;
+    public Robot robot = new Robot();
+
+    public robotRotation robotRotation = new robotRotation();
 
     int CurrentModuleRoatation = 0;
 
@@ -25,13 +28,12 @@ public class RobotController {
     public void initialize() {
 
         //create robot backend, which also creates graphics
-        robot = new Robot();
 
         //add the goal to the screen
         screenElements.getChildren().add(robot.graphics.getGoal());
 
         //add the robot to the screen
-        screenElements.getChildren().addAll(robot.graphics.getRobot());
+        screenElements.getChildren().addAll(robot.graphics.getModules());
 
 //        control = new RobotAnimationControl();
     }
@@ -53,13 +55,19 @@ public class RobotController {
 
             System.out.println("Moving left");
             if(CurrentModuleRoatation == 1){
-                robot.rotateModule1(10);
+//                robot.rotateModule1(10);
+
+                robotRotation.rotateModule(1,robot,1);
             }
             else if(CurrentModuleRoatation == 2){
-                robot.rotateModule2(10);
+//                robot.rotateModule2(10);
+                robotRotation.rotateModule(2,robot,1);
+
             }
             else if(CurrentModuleRoatation == 3){
-                robot.rotateModule3(10);
+                robotRotation.rotateModule(3,robot,1);
+
+//                robot.rotateModule3(10);
             }
         }
 
@@ -67,13 +75,20 @@ public class RobotController {
             System.out.println("Moving right");
 
             if(CurrentModuleRoatation == 1){
-                robot.rotateModule1(-10);
+//                robot.rotateModule1(-10);
+                robotRotation.rotateModule(1,robot,-1);
+
             }
             else if(CurrentModuleRoatation == 2){
-                robot.rotateModule2(-10);
+                robotRotation.rotateModule(2,robot,-1);
+
+//                robot.rotateModule2(-10);
             }
             else if(CurrentModuleRoatation == 3){
-                robot.rotateModule3(-10);
+                robotRotation.rotateModule(3,robot,-1);
+
+
+//                robot.rotateModule3(-10);
             }
         }
     }
