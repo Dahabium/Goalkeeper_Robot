@@ -1,6 +1,8 @@
 package robotModules;
 
 import javafx.animation.AnimationTimer;
+import java.util.ArrayList;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
 import javafx.animation.Timeline;
@@ -18,10 +20,15 @@ public class Robot {
 
 	public robotGraphics graphics;
 	public RobotAnimationControl robotAnimation;
+	private ArrayList<robotModules.Objects> Objects = new ArrayList<>();
+	
+	public ArrayList<robotModules.Objects> getObjects() {
+		return Objects;
+	}
 
 	public Robot() {
 
-		top_1 = new robotModule_top(230,50,100,100,50);
+	    top_1 = new robotModule_top(230,50,100,100,50);
 		joint_1 = new robotJoint(250,100);
 		bottom_1 = new robotModule_bottom(230,110,100,100,50);
 		
@@ -32,6 +39,19 @@ public class Robot {
 		top_3 = new robotModule_top(230,210,100,100,50);
 		joint_3 = new robotJoint(250,270);
 		bottom_3 = new robotModule_bottom(230,280,100,100,50);
+		
+		Objects.add(top_1);
+		Objects.add(joint_1);
+		Objects.add(bottom_1);
+		Objects.add(top_2);
+		Objects.add(joint_2);
+		Objects.add(bottom_2);
+		Objects.add(top_3);
+		Objects.add(joint_3);
+		Objects.add(bottom_3);
+		
+		
+		
 		
 		top_1.setBottom(joint_1);
 		top_1.setTop(null);

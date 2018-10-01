@@ -1,24 +1,24 @@
 package robotModules;
 
-public class robotJoint {
+public class robotJoint implements Objects{
 	
 	
 	private double x;
 	private double y;
-	private int globalID;
+	private double globalID;
 	private int currentBentDegree;
 	private int robotBentDegree;
 	private int calibraionValue;
 	private robotModule_top topModule;
 	private robotModule_bottom bottomModule;
 	
-	public robotJoint(int x, int y) {
+	public robotJoint(double x, double y) {
 		this.x = x;
 		this.y = y;
 		this.globalID = x + y;
 	}
 	
-	public int getGlobalID() {
+	public double getGlobalID() {
 		return this.globalID;
 	}
 	

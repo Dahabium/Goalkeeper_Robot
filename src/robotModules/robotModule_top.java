@@ -1,12 +1,12 @@
 package robotModules;
 
-import javafx.scene.shape.Rectangle;
 
-public class robotModule_top {
 
-	private int x;
-	private int y;
-	private int globalID;
+public class robotModule_top implements Objects{
+
+	private double x;
+	private double y;
+	private double globalID;
     private int length;
     private int width;
     private int weight;
@@ -16,7 +16,7 @@ public class robotModule_top {
 //    private Rectangle graphics;
    
   
-    public robotModule_top(int x, int y, int length, int width, int weight) {
+    public robotModule_top(double x, double y, int length, int width, int weight) {
     	this.length = length;
     	this.width = width;
     	this.weight = weight;
@@ -28,26 +28,26 @@ public class robotModule_top {
 
 
 
-    public int getGlobalID() {
+    public double getGlobalID() {
 		return this.globalID;
 	}
 
-	public int getX() {
+	public double getX() {
 		return x;
 	}
 
 
-	public void setX(int x) {
+	public void setX(double x) {
 		this.x = x;
 	}
 
 
-	public int getY() {
+	public double getY() {
 		return y;
 	}
 
 
-	public void setY(int y) {
+	public void setY(double y) {
 		this.y = y;
 	}
 
