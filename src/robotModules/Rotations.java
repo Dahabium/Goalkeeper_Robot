@@ -2,7 +2,7 @@ package robotModules;
 
 
 
-public class Test_coords {
+public class Rotations {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
@@ -11,7 +11,7 @@ public class Test_coords {
 		Robot robot = new Robot();
 		System.out.println(robot.getObjects().get(0));
 		
-		rotateModule(1,robot,1);
+		//rotateModule(1,robot,1);
 		for(Object obj : robot.getObjects()) {
 			System.out.println(((robotModules.Objects) obj).getX());
 		}
@@ -21,7 +21,7 @@ public class Test_coords {
 		
 	}
 	
-	public static void rotateModule(int jointNumber, Robot robot, double radAngle) {
+	public void rotateModule(int jointNumber, Robot robot, double radAngle) {
 		int deviation = 0;
 		
 		

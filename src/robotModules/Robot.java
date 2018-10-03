@@ -1,18 +1,11 @@
 package robotModules;
 
-import javafx.animation.AnimationTimer;
+
 import java.util.ArrayList;
 
-import javafx.animation.KeyFrame;
-import javafx.animation.KeyValue;
-import javafx.animation.Timeline;
-import javafx.scene.Group;
-import javafx.scene.shape.Circle;
-import javafx.scene.transform.Rotate;
-import javafx.util.Duration;
-import simuation.RobotController;
 
-//creates and stores the backend objects of the robot
+
+//creates and stores the back-end objects of the robot
 public class Robot {
 
 	robotModule_top top_1,top_2,top_3;
@@ -23,7 +16,6 @@ public class Robot {
 	
 	public ArrayList<robotModules.Objects> getObjects() {
 		return Objects;
-		// 0 to 8.
 	}
 
 	public Robot() {

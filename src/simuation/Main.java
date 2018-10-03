@@ -28,14 +28,7 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-        //Create the window for the ball, add the ball in controller.
-
-
-
-
-//        System.out.println("Graphics " + simulation.getGoal().getChildren().size());
-
-
+    /**
 
         Parent parent = FXMLLoader.load(getClass().getResource("../userinterface/mainView.fxml"));
 
@@ -49,7 +42,7 @@ public class Main extends Application {
         primaryStage.setX(300);
         primaryStage.setY(200);
         primaryStage.show();
-
+*/
 
         //create window for the robot, add robot parts through controller.
         Stage secondryStage = new Stage();
@@ -67,16 +60,8 @@ public class Main extends Application {
         secondryStage.show();
         secondryStage.requestFocus();
 
-        KeyControl control = new KeyControl();
+  //      KeyControl control = new KeyControl();
 
-        //this is a javafx bug that is fixed with a walkaround... (otherwise i would call the method straigh
-        //from the controller... without those lines to make it focused.
-//        RobotController controller = loader.getController();
-//        BallController controller1 = ballLoader.getController();
-
-
-
-//        controller.focus();
 
 
         screenElements.requestFocus();
@@ -88,27 +73,25 @@ public class Main extends Application {
 
         Robot robot = new Robot();
         robotGraphics graphics = new robotGraphics();
-
         Simulation simulation = new Simulation(graphics,robot);
-
-        Circle circle = new Circle(10,10,10);
-
+        
+        
         screenElements.getChildren().add(simulation.getGoal());
-
+        screenElements.getChildren().addAll(simulation.getGraphics().getModules());
 
     }
 
 
-    private class KeyControl implements EventHandler<KeyEvent> {
-
-        @Override
-        public void handle(KeyEvent event) {
-            if (event.getCode() == KeyCode.SPACE) {
-                System.out.println("SPACE IS PRESSED!");
-
-            }
-        }
-    }
+//    private class KeyControl implements EventHandler<KeyEvent> {
+//
+//        @Override
+//        public void handle(KeyEvent event) {
+//            if (event.getCode() == KeyCode.SPACE) {
+//                System.out.println("SPACE IS PRESSED!");
+//
+//            }
+//        }
+//    }
 
 
     public static void main(String[] args) {
