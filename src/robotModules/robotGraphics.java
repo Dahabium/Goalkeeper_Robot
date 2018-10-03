@@ -17,6 +17,7 @@ public class robotGraphics {
 
     Group goal;
 
+    //modules array contains 3 clusters, each of which contains 3 parts...
     ArrayList<Group> modules = new ArrayList<>();
 
 	public void createGoal() {
@@ -36,8 +37,13 @@ public class robotGraphics {
 		Rectangle block_top = new Rectangle(top.getX(),top.getY(),40,40);
 //		block_top.setTranslateX(top.getX());
 //		block_top.setTranslateY(top.getY());
+
+
         Circle joint_middle = new Circle(joint.getX(),joint.getY(),10);
-        Rectangle block_end = new Rectangle(bottom.getX(),bottom.getY(),40,50);
+        Rectangle block_end = new Rectangle(0,0,40,50);
+
+        block_end.setTranslateX(bottom.getX());
+        block_end.setTranslateY(bottom.getY());
 
         block_end.setArcHeight(15);
         block_end.setArcWidth(15);
@@ -63,6 +69,7 @@ public class robotGraphics {
 	public Group getGoal(){
 	    return goal;
     }
+
 
     //PS: The robot is a hierarchical structure, so Im adding the topmost
     //module, which contains everything below it.

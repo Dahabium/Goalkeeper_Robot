@@ -2,22 +2,40 @@ package simuation;
 
 import javafx.application.Application;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Group;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
+import robotModules.Robot;
+import robotModules.Simulation;
+import robotModules.robotGraphics;
 
 public class Main extends Application {
 
     Scene BallScene, RobotScene;
 
 
+    @FXML
+    public Group screenElements = new Group();
+
+
     @Override
     public void start(Stage primaryStage) throws Exception {
 
         //Create the window for the ball, add the ball in controller.
+
+
+
+
+//        System.out.println("Graphics " + simulation.getGoal().getChildren().size());
+
+
 
         Parent parent = FXMLLoader.load(getClass().getResource("../userinterface/mainView.fxml"));
 
@@ -26,11 +44,6 @@ public class Main extends Application {
         primaryStage.setTitle("Ball");
 
         BallScene = new Scene(parent, 500, 500);
-
-        //just to check if keyboard input is working...
-
-//        KeyControl keyControl = new KeyControl();
-//        BallScene.setOnKeyPressed(keyControl);
 
         primaryStage.setScene(BallScene);
         primaryStage.setX(300);
@@ -45,25 +58,46 @@ public class Main extends Application {
 
         FXMLLoader loader = new FXMLLoader();
         loader.setLocation(getClass().getResource("../userinterface/RobotView.fxml"));
+
         Parent parent2 = loader.load();
 
         RobotScene = new Scene(parent2, 500, 500);
 
         secondryStage.setScene(RobotScene);
         secondryStage.show();
+        secondryStage.requestFocus();
 
         KeyControl control = new KeyControl();
 
         //this is a javafx bug that is fixed with a walkaround... (otherwise i would call the method straigh
         //from the controller... without those lines to make it focused.
-        RobotController controller = loader.<RobotController>getController();
-        BallController controller1 = ballLoader.<BallController>getController();
+//        RobotController controller = loader.getController();
+//        BallController controller1 = ballLoader.getController();
 
 
-        controller.focus();
-//        controller1.focus();
+
+//        controller.focus();
+
+
+        screenElements.requestFocus();
+
 
     }
+
+    public void initialize() {
+
+        Robot robot = new Robot();
+        robotGraphics graphics = new robotGraphics();
+
+        Simulation simulation = new Simulation(graphics,robot);
+
+        Circle circle = new Circle(10,10,10);
+
+        screenElements.getChildren().add(simulation.getGoal());
+
+
+    }
+
 
     private class KeyControl implements EventHandler<KeyEvent> {
 

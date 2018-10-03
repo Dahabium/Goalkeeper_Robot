@@ -15,6 +15,7 @@ public class RobotController {
 
     @FXML
     public Group screenElements;
+
     @FXML
     public BorderPane RobotPane;
 
@@ -30,12 +31,13 @@ public class RobotController {
         //create robot backend, which also creates graphics
 
         //add the goal to the screen
-        screenElements.getChildren().add(robot.graphics.getGoal());
+//        screenElements.getChildren().add(robot.graphics.getGoal());
 
         //add the robot to the screen
-        screenElements.getChildren().addAll(robot.graphics.getModules());
+//        screenElements.getChildren().addAll(robot.graphics.getModules());
 
 //        control = new RobotAnimationControl();
+
     }
 
     @FXML
@@ -57,15 +59,17 @@ public class RobotController {
             if(CurrentModuleRoatation == 1){
 //                robot.rotateModule1(10);
 
-                robotRotation.rotateModule(1,robot,1);
+                robot.getObjects().get(2).setX(robot.getObjects().get(2).getX() + 10);
+
+//                robotRotation.rotateModule(1,robot,1);
             }
             else if(CurrentModuleRoatation == 2){
 //                robot.rotateModule2(10);
-                robotRotation.rotateModule(2,robot,1);
+//                robotRotation.rotateModule(2,robot,1);
 
             }
             else if(CurrentModuleRoatation == 3){
-                robotRotation.rotateModule(3,robot,1);
+//                robotRotation.rotateModule(3,robot,1);
 
 //                robot.rotateModule3(10);
             }
@@ -92,6 +96,8 @@ public class RobotController {
             }
         }
     }
+
+
 
     public void focus() {
         screenElements.requestFocus();
