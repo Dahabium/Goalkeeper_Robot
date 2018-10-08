@@ -28,21 +28,21 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
 
-    /**
 
-        Parent parent = FXMLLoader.load(getClass().getResource("../userinterface/mainView.fxml"));
+//
+//        Parent parent = FXMLLoader.load(getClass().getResource("../userinterface/mainView.fxml"));
+//
+//        FXMLLoader ballLoader = new FXMLLoader();
+//        ballLoader.load(getClass().getResource("../userinterface/mainView.fxml"));
+//        primaryStage.setTitle("Ball");
+//
+//        BallScene = new Scene(parent, 500, 500);
+//
+//        primaryStage.setScene(BallScene);
+//        primaryStage.setX(300);
+//        primaryStage.setY(200);
+//        primaryStage.show();
 
-        FXMLLoader ballLoader = new FXMLLoader();
-        ballLoader.load(getClass().getResource("../userinterface/mainView.fxml"));
-        primaryStage.setTitle("Ball");
-
-        BallScene = new Scene(parent, 500, 500);
-
-        primaryStage.setScene(BallScene);
-        primaryStage.setX(300);
-        primaryStage.setY(200);
-        primaryStage.show();
-*/
 
         //create window for the robot, add robot parts through controller.
         Stage secondryStage = new Stage();
