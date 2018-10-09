@@ -34,6 +34,7 @@ public class Rotations {
 		
 		double x =  a + r * Math.cos(Math.toRadians(angleGrad));
 		double y =  b + r * Math.sin(Math.toRadians(angleGrad+180));
+		System.out.println("Coords output " + x + "   " +y);
 		return new double[]{x, y};
 	}
 	

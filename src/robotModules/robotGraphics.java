@@ -24,19 +24,30 @@ public class robotGraphics {
 	
 	public void createCluster(robotModule_top top, robotJoint joint, robotModule_bottom bottom){
 		Group cluster = new Group();
-        Rectangle block_top = new Rectangle(top.getX(),top.getY(),40,40);
-		Circle joint_middle = new Circle(joint.getX(),joint.getY(),10);
-        Rectangle block_end = new Rectangle(0,0,40,40);
+        Rectangle block_top = new Rectangle(40,40);
+		Circle joint_middle = new Circle(10);
+        Rectangle block_end = new Rectangle(40,40);
         
+
+        block_top.setTranslateX(top.getX());
+        block_top.setTranslateY(top.getY());
+
+        joint_middle.setTranslateX(joint.getX());
+        joint_middle.setTranslateY(joint.getY());
+
+        System.out.println("Trnaslation of joint: " + joint_middle.getTranslateX() + "  " + joint_middle.getTranslateY());
 
         block_end.setTranslateX(bottom.getX());
         block_end.setTranslateY(bottom.getY());
+
+
         block_end.setArcHeight(15);
         block_end.setArcWidth(15);
         joint_middle.setFill(Color.BLUE);
         block_end.setFill(Color.GREEN);
 
         //cluster.getChildren().addAll(block_top,joint_middle,block_end);
+        cluster.getChildren().add(block_top);
         cluster.getChildren().add(joint_middle);
 		cluster.getChildren().add(block_end);
 		modules.add(cluster);

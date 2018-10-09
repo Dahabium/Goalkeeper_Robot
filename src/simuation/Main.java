@@ -24,6 +24,8 @@ public class Main extends Application {
     @FXML
     public Group screenElements = new Group();
 
+    int temp = 0;
+    boolean rotateall = false;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
@@ -60,7 +62,21 @@ public class Main extends Application {
         secondryStage.show();
         secondryStage.requestFocus();
 
-  //      KeyControl control = new KeyControl();
+        RobotScene.setOnKeyPressed(event -> {
+
+            temp++;
+
+            if(temp %2 == 0){
+
+                //rotate all
+
+            }
+            else{
+                //rotate bottom
+            }
+
+            System.out.println("check");
+        });
 
 
 
@@ -71,10 +87,11 @@ public class Main extends Application {
 
     public void initialize() {
 
+
         Robot robot = new Robot();
         robotGraphics graphics = new robotGraphics();
         Simulation simulation = new Simulation(graphics,robot);
-        
+
         
         screenElements.getChildren().add(simulation.getGoal());
         screenElements.getChildren().addAll(simulation.getGraphics().getModules());
@@ -82,16 +99,19 @@ public class Main extends Application {
     }
 
 
-//    private class KeyControl implements EventHandler<KeyEvent> {
-//
-//        @Override
-//        public void handle(KeyEvent event) {
-//            if (event.getCode() == KeyCode.SPACE) {
-//                System.out.println("SPACE IS PRESSED!");
-//
-//            }
-//        }
-//    }
+    private class KeyControl implements EventHandler<KeyEvent> {
+
+        @Override
+        public void handle(KeyEvent event) {
+            if (event.getCode() == KeyCode.SPACE) {
+
+                //for future...
+
+
+
+            }
+        }
+    }
 
 
     public static void main(String[] args) {
