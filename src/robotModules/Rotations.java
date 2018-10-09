@@ -2,26 +2,42 @@ package robotModules;
 
 
 
-public class Test_coords {
+public class Rotations {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 
 		
-		Robot robot = new Robot();
-		System.out.println(robot.getObjects().get(0));
+		//Robot robot = new Robot();
 		
-		rotateModule(1,robot,1);
-		for(Object obj : robot.getObjects()) {
-			System.out.println(((robotModules.Objects) obj).getX());
+		for(double i=0;i<360;) {
+			//System.out.println(rotateLine(30,250,280,250,140)[0]);
+			System.out.println(coords(i,250,140,140)[1]);
+			
+		i = i + 0.1;
 		}
-		for(Object obj : robot.getObjects()) {
-			System.out.println(((robotModules.Objects) obj).getY());
-		}
+		
+//		for(double i=0;i<30;) {
+//			System.out.println(rotateLine(i,250,280,250,140)[1]);
+//			//System.out.println(rotateLine(i,250,280,250,140)[1]);
+//			
+//			i = i + 0.1;
+//		}
+		
+		
+		
+		//System.out.println(rotateLine(1,250,280,250,140)[0]+" "+rotateLine(1,250,280,250,140)[1]);
 		
 	}
 	
-	public static void rotateModule(int jointNumber, Robot robot, double radAngle) {
+	public static double[] coords(double angleGrad, double a, double b, double r) {
+		
+		double x =  a + r * Math.cos(Math.toRadians(angleGrad));
+		double y =  b + r * Math.sin(Math.toRadians(angleGrad+180));
+		return new double[]{x, y};
+	}
+	
+	public void rotateModule(int jointNumber, Robot robot, double radAngle) {
 		int deviation = 0;
 		
 		
@@ -68,8 +84,9 @@ public class Test_coords {
 		
 	}
 	
-	private static double[] rotateLine( double radAngle, double endX, double endY, double px, double py) {
+	private static double[] rotateLine( double degAngle, double endX, double endY, double px, double py) {
         double x, y;
+       double radAngle = Math.toRadians(degAngle);
         x = Math.cos(radAngle) * (endX - px) - Math.sin(radAngle) * (endY - py) + px;
         y = Math.sin(radAngle) * (endX - px) + Math.cos(radAngle) * (endY - py) + py;
         return new double[]{x, y};

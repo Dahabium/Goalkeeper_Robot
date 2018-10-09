@@ -13,7 +13,7 @@ public class robotModule_top implements Objects{
     private robotModule_top top;
     private robotJoint bottom;
 
-//    private Rectangle graphics;
+
    
   
     public robotModule_top(double x, double y, int length, int width, int weight) {
