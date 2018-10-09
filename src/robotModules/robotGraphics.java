@@ -35,7 +35,7 @@ public class robotGraphics {
         joint_middle.setTranslateX(joint.getX());
         joint_middle.setTranslateY(joint.getY());
 
-        System.out.println("Trnaslation of joint: " + joint_middle.getTranslateX() + "  " + joint_middle.getTranslateY());
+      //  System.out.println("Trnaslation of joint: " + joint_middle.getTranslateX() + "  " + joint_middle.getTranslateY());
 
         block_end.setTranslateX(bottom.getX());
         block_end.setTranslateY(bottom.getY());

@@ -29,8 +29,8 @@ public class Robot {
 		bottom_2 = new robotModule_bottom(230,190,100,100,50);
 		
 		top_3 = new robotModule_top(230,210,100,100,50);
-		joint_3 = new robotJoint(250,270);
-		bottom_3 = new robotModule_bottom(230,280,100,100,50);
+		joint_3 = new robotJoint(250,260);
+		bottom_3 = new robotModule_bottom(230,270,100,100,50);
 		
 		Objects.add(top_1);
 		Objects.add(joint_1);

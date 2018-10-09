@@ -5,12 +5,10 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Group;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.shape.Circle;
 import javafx.stage.Stage;
 import robotModules.Robot;
 import robotModules.Simulation;
@@ -19,7 +17,9 @@ import robotModules.robotGraphics;
 public class Main extends Application {
 
     Scene BallScene, RobotScene;
-
+    Robot robot = new Robot();
+    robotGraphics graphics = new robotGraphics();
+    Simulation simulation = new Simulation(graphics,robot);
 
     @FXML
     public Group screenElements = new Group();
@@ -74,9 +74,8 @@ public class Main extends Application {
             else{
                 //rotate bottom
             }
-
-            System.out.println("check");
-        });
+      
+                    });
 
 
 
@@ -87,13 +86,7 @@ public class Main extends Application {
 
     public void initialize() {
 
-
-        Robot robot = new Robot();
-        robotGraphics graphics = new robotGraphics();
-        Simulation simulation = new Simulation(graphics,robot);
-
-        
-        screenElements.getChildren().add(simulation.getGoal());
+    	screenElements.getChildren().add(simulation.getGoal());
         screenElements.getChildren().addAll(simulation.getGraphics().getModules());
 
     }
@@ -104,8 +97,6 @@ public class Main extends Application {
         @Override
         public void handle(KeyEvent event) {
             if (event.getCode() == KeyCode.SPACE) {
-
-                //for future...
 
 
 
