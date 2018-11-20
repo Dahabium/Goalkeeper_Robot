@@ -11,6 +11,7 @@ import javafx.scene.Scene;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.shape.Circle;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import robotModules.Robot;
 import robotModules.Simulation;
@@ -24,27 +25,29 @@ public class Main extends Application {
     @FXML
     public Group screenElements = new Group();
 
+    @FXML
+    public Text ArmXYPos;
+
     int temp = 0;
     boolean rotateall = false;
 
     @Override
     public void start(Stage primaryStage) throws Exception {
 
+//
+        Parent parent = FXMLLoader.load(getClass().getResource("../userinterface/mainView.fxml"));
 
-//
-//        Parent parent = FXMLLoader.load(getClass().getResource("../userinterface/mainView.fxml"));
-//
-//        FXMLLoader ballLoader = new FXMLLoader();
-//        ballLoader.load(getClass().getResource("../userinterface/mainView.fxml"));
-//        primaryStage.setTitle("Ball");
-//
-//        BallScene = new Scene(parent, 500, 500);
-//
-//        primaryStage.setScene(BallScene);
-//        primaryStage.setX(300);
-//        primaryStage.setY(200);
-//        primaryStage.show();
+        FXMLLoader ballLoader = new FXMLLoader();
+        ballLoader.load(getClass().getResource("../userinterface/mainView.fxml"));
+        primaryStage.setTitle("Ball");
 
+        BallScene = new Scene(parent, 500, 500);
+
+        primaryStage.setScene(BallScene);
+        primaryStage.setX(300);
+        primaryStage.setY(200);
+        primaryStage.show();
+//
 
         //create window for the robot, add robot parts through controller.
         Stage secondryStage = new Stage();
@@ -62,22 +65,14 @@ public class Main extends Application {
         secondryStage.show();
         secondryStage.requestFocus();
 
+
         RobotScene.setOnKeyPressed(event -> {
 
-            temp++;
-
-            if(temp %2 == 0){
-
-                //rotate all
-
-            }
-            else{
-                //rotate bottom
-            }
+            //nullpointerexception here!
+            ArmXYPos.setText("Change! ");
 
             System.out.println("check");
         });
-
 
 
         screenElements.requestFocus();
@@ -98,16 +93,16 @@ public class Main extends Application {
 
     }
 
+    @FXML
+    public void changeText(){
+
+    }
 
     private class KeyControl implements EventHandler<KeyEvent> {
 
         @Override
         public void handle(KeyEvent event) {
             if (event.getCode() == KeyCode.SPACE) {
-
-                //for future...
-
-
 
             }
         }

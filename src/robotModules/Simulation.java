@@ -160,13 +160,5 @@ public class Simulation extends AnimationTimer {
 
 
     }
-
-
-
-
-
-    
-    
-    
     
 }

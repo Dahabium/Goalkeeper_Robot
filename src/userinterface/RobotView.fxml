@@ -18,7 +18,7 @@
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Arm endpoint" wrappingWidth="82.3175048828125" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="X: 0    Y: 0" />
+            <Text fx:id="ArmXYPos" onKeyPressed="#changeText" strokeType="OUTSIDE" strokeWidth="0.0" text="X: 0    Y: 0" wrappingWidth="73.1741943359375" />
          </children>
       </HBox>
    </bottom>
