@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
 
 
 float lengths[] = {10.5, 10.5, 5.5};
@@ -11,6 +12,11 @@ struct Joint {
     float x;
     float y;
     float angle;
+};
+
+struct Tuple{
+    float x;
+    float y;
 };
 
 //like a list of joints using a struct....
@@ -39,10 +45,13 @@ float getAngle(float endX1,float endY1, float endX2, float endY2){
 //output: new joint positions
 
 void solve_fabrik(float xTarget, float yTarget) {
+    //don't move anywhere if the ball is flying above the goal, right to the goal or left of the goal...
+    if( yTarget > 0 || xTarget > 22 || xTarget < -22){
+        return;
+    }
 
-    float distFromRoot = distance(0,0,xTarget,yTarget);
     //check if the target is possible to reach:
-
+    float distFromRoot = distance(0,0,xTarget,yTarget);
     //target is unreachable:
     if(distFromRoot >= lengths[0] + lengths[1] + lengths[2]){
 
@@ -147,12 +156,101 @@ void solve_fabrik(float xTarget, float yTarget) {
     }
 
 
-
-
     //======done======
 }
 
+//return in which zone are the given coordinates:
+//zone 1: if the coordinates are in circle of
+int getZone(float x, float y){
 
+    float distFromZero = sqrtf(x*x + y*y);
+
+    if(distFromZero <= lengths[0]){
+        return 1;
+    }
+    else if(distFromZero <= lengths[0]+lengths[1]){
+        return 2;
+    }
+    else return 3;
+}
+//returns a new tuple of coordinates extended to the farmost radius.
+struct Tuple getVectorPosition(float x, float y){
+
+    float distFromZero = sqrtf(x*x + y*y);
+
+    //zone 1
+    if(distFromZero <= lengths[0]){
+        float extension = fabs(lengths[0] - distFromZero);
+        extension = lengths[0] / (lengths[0] - extension);
+        struct Tuple out = { x* extension,y*extension};
+        return out;
+    }
+    //zone 2
+    else if(distFromZero <= lengths[0]+lengths[1]){
+        float extension = fabs((lengths[0]+lengths[1]) - distFromZero);
+        extension = lengths[0] / (lengths[0] - extension);
+        struct Tuple out = { x* extension,y*extension};
+        return out;
+    }
+    //zone 3
+    else{
+        float extension = fabs((lengths[0]+lengths[1]+lengths[2]) - distFromZero);
+        extension = lengths[0] / (lengths[0] - extension);
+        struct Tuple out = { x* extension,y*extension};
+        return out;
+    }
+
+    //struct Tuple invalid = {100,100};
+}
+
+void setdegreesInZones(float x, float y){
+
+    if( getZone(x,y) == 1){
+
+        struct Tuple temp = getVectorPosition(x,y);
+
+        modules[1].x = temp.x;
+        modules[1].y = temp.y;
+
+        if(modules[1].x < 0){
+            modules[0].angle = -1 * getAngle(modules[1].x,modules[1].y, 0, -10.5);
+            modules[1].angle = -1 * modules[0].angle;
+        }
+        else{
+            modules[0].angle = getAngle(modules[1].x,modules[1].y, 0, -10.5);
+            modules[1].angle = -1 * modules[0].angle;
+        }
+
+    }
+    else if(getZone(x,y) == 2){
+
+        struct Tuple temp = getVectorPosition(x,y);
+
+        modules[2].x = temp.x;
+        modules[2].y = temp.y;
+
+        if(modules[2].x < 0){
+            modules[0].angle = -1 * getAngle(modules[2].x,modules[2].y, 0, -10.5);
+            modules[2].angle = -1 * modules[0].angle;
+        }
+        else{
+            modules[0].angle = getAngle(modules[2].x,modules[2].y, 0, -10.5);
+            modules[2].angle = -1 * modules[0].angle;
+        }
+    }
+
+    else{
+        solve_fabrik(x,y);
+    }
+
+    //todo update the backend modules positions via Foreward Kinematics
+
+    return;
+
+    //else if (getZone(x,y) == 2){
+
+    //}
+}
 
 int main() {
 
@@ -173,7 +271,7 @@ int main() {
     modules[2].angle = 0;
     modules[3].angle = 0;
 
-    solve_fabrik(-15,-10);
+    //solve_fabrik(15,0);
 
     for (int i = 0; i <= 3; ++i) {
         printf("Joint number %i ->  X: %f , Y: %f , Angle(degree): %f \n", i, modules[i].x, modules[i].y, modules[i].angle);
@@ -184,17 +282,21 @@ int main() {
     float a2 = modules[1].angle;
     float a3 = modules[2].angle;
 
-    printf(" leng 1 %f ", (lengths[2]*sin(a1+a2+a3) ));
+    //printf(" ZONECHECK: %i ", getZone(15,-20) );
+    printf(" EXTENSIONCHECK : %f %f", getVectorPosition(5,-5).x, getVectorPosition(5,-5).y );
+
+    setdegreesInZones(15,-20);
+
+    printf(" SETDEGREESZONE : %f %f %f", modules[0].angle, modules[1].angle, modules[2].angle);
 
     float outX = (lengths[0]*sin(a1)) + (lengths[1]*sin(a1+a2)) + (lengths[2]*sin(a1+a2+a3));
     float outY = (lengths[0]*cos(a1)) + (lengths[1]*cos(a1+a2)) + (lengths[2]*cos(a1+a2+a3));
 
-    printf("Forwards kinematics check : X: %f , Y: %f", outX, outY);
+    //printf("Forwards kinematics check : X: %f , Y: %f", outX, outY);
 
     //test of getangle method =(-8,1,-2,7) shall return 66.9 degrees.
     //printf("\n ANGLE CHECK! %f ", getAngle(-8,1,-2,7));
     //printf("\n ANGLE CHECK! %f ", getAngle(-0.7,-10.4,0,-10.5));
-
 
 
 
